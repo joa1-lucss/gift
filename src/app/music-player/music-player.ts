@@ -50,7 +50,7 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
             artist: "Lana Del Rey",
             cover: "assets/covers/videogames.jpg",
             audioUrl: "assets/musics/videogames.mp3",
-            color: "#FFD700",
+            color: "#ac7e02",
             lyrics: [
                 { original: "It's you, it's you, it's all for you, everything I do", translation: "É você, é você, é tudo para você, tudo o que eu faço" },
                 { original: "I tell you all the time, Heaven is a place on Earth with you", translation: "Eu te digo o tempo todo, o céu é um lugar na terra com você" },
@@ -61,8 +61,8 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
                 { original: "Only worth living if somebody is loving you", translation: "Só vale a pena viver se alguém está te amando" },
                 { original: "And, baby, now you do", translation: "E, amor, agora você ama" }
             ],
-            description: "Uma música que ganhou um significado completamente diferente desde que você apareceu. Antes eu gostava dela, mas agora ela sempre me leva até você. Toda vez que escuto, lembro das nossas conversas, dos nossos momentos e da forma como você faz tudo parecer mais leve. De alguma forma, você acabou ficando guardado nessa música. E acho que é por isso que ela nunca mais vai soar igual para mim. Porque, no fim das contas...",
-            quote: "O paraíso é um lugar na Terra com você"
+            description: "Uma música que ganhou um significado completamente diferente desde que você apareceu. Antes eu gostava dela, mas agora ela sempre me leva até você. Toda vez que escuto, lembro das nossas conversas, dos nossos momentos e da forma como você faz tudo parecer mais leve. De alguma forma, você acabou ficando guardado nessa música. E acho que é por isso que ela nunca mais vai soar igual para mim.",
+            quote: "Porque, no fim das contas... Heaven is a place on Earth with you"
         }
     ];
 
@@ -71,6 +71,7 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
     showLyrics = false;
     showDescription = false;
     isTransitioning = false;
+    currentBackground = this.songs[0].color;
     
     private audio: HTMLAudioElement | null = null;
 
@@ -78,6 +79,7 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.initAudio();
+        this.currentBackground = this.getCurrentSong().color;
     }
 
     ngOnDestroy() {
@@ -95,11 +97,6 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
         
         this.audio = new Audio(this.songs[this.currentSongIndex].audioUrl);
         this.audio.load();
-        
-        // REMOVIDO: não avança automaticamente quando termina
-        // this.audio.addEventListener('ended', () => {
-        //     this.nextSong();
-        // });
     }
 
     togglePlay() {
@@ -115,7 +112,6 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
 
     prevSong() {
         if (this.isTransitioning) return;
-        
         this.isTransitioning = true;
         
         if (this.audio) {
@@ -128,14 +124,15 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
             newIndex = this.songs.length - 1;
         }
         
+        this.currentBackground = this.songs[newIndex].color;
         this.currentSongIndex = newIndex;
         this.showLyrics = false;
         this.showDescription = false;
+        this.initAudio();
         
         setTimeout(() => {
-            this.initAudio();
             this.isTransitioning = false;
-        }, 100);
+        }, 300);
     }
 
     nextSong() {
@@ -153,14 +150,15 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
             return;
         }
         
+        this.currentBackground = this.songs[newIndex].color;
         this.currentSongIndex = newIndex;
         this.showLyrics = false;
         this.showDescription = false;
+        this.initAudio();
         
         setTimeout(() => {
-            this.initAudio();
             this.isTransitioning = false;
-        }, 100);
+        }, 300);
     }
 
     getCurrentSong() {
@@ -176,7 +174,7 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
     }
 
     getDynamicGradient(): string {
-        const baseColor = this.getCurrentSong().color;
+        const baseColor = this.currentBackground;
         return `radial-gradient(circle at 50% 50%, ${baseColor} 15%, #000000 100%)`;
     }
 

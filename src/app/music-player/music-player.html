@@ -10,7 +10,8 @@
         <div class="placeholder"></div>
     </div>
 
-    <div class="content-wrapper" [class.transitioning]="isTransitioning">
+    <div class="content-wrapper">
+        <!-- Capa -->
         <div class="cover-wrapper">
             <div class="cover-container">
                 <img [src]="getCurrentSong().cover" 
@@ -20,6 +21,7 @@
             </div>
         </div>
 
+        <!-- Nome da música -->
         <div class="song-info">
             <h2>{{ getCurrentSong().title }}</h2>
             <p>{{ getCurrentSong().artist }}</p>
@@ -27,13 +29,13 @@
 
         <div class="controls">
             <button class="ctrl-btn prev" (click)="prevSong()" [disabled]="isTransitioning">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
                 </svg>
             </button>
             
             <button class="ctrl-btn play" (click)="togglePlay()">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
                     <path *ngIf="!isPlaying" d="M8 5v14l11-7z"/>
                     <rect *ngIf="isPlaying" x="6" y="5" width="4" height="14" rx="1"/>
                     <rect *ngIf="isPlaying" x="14" y="5" width="4" height="14" rx="1"/>
@@ -41,7 +43,7 @@
             </button>
             
             <button class="ctrl-btn next" (click)="nextSong()" [disabled]="isTransitioning">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M16 6h2v12h-2zm-3.5 6l-8.5-6v12z"/>
                 </svg>
             </button>
