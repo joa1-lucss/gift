@@ -1,0 +1,74 @@
+<div class="container">
+    <!-- Efeito de gradiente de fundo animado -->
+    <div class="ambient-glow"></div>
+    
+    <!-- Onda inferior animada -->
+    <div class="wave-container">
+        <svg class="wave" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path d="M0,64 C160,64 320,32 480,48 C640,64 800,96 960,80 C1120,64 1280,32 1440,48 L1440,120 L0,120 Z" fill="url(#waveGradient)"/>
+            <defs>
+                <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="rgba(255,51,102,0.2)"/>
+                    <stop offset="100%" stop-color="rgba(255,51,102,0)"/>
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
+    
+    <!-- Header com MATCH -->
+    <div class="header">
+        <div class="header-content">
+            <div class="match-section">
+                <div class="match-title">MATCH</div>
+                <div class="match-date">04 . 05 . 2026</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cards empilhados atrás (lateral esquerda e direita) -->
+    <div class="stack-card stack-card-left"></div>
+    <div class="stack-card stack-card-right"></div>
+
+    <!-- Card principal -->
+    <div class="card-wrapper" [class.animate-out]="isAnimating">
+        <div class="card">
+            <div class="photo-top">
+                <img src="assets/photos/ele.jpg" alt="Ele" class="profile-img">
+                <div class="overlay-gradient"></div>
+                <div class="name-tag">
+                    <span class="name-icon">✦</span>
+                    <span>GATINHO</span>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="photo-bottom">
+                <img src="assets/photos/eu.jpg" alt="Ela" class="profile-img">
+                <div class="overlay-gradient"></div>
+                <div class="name-tag">
+                    <span>LOBINHO</span>
+                    <span class="name-icon">✦</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão do coração -->
+    <button class="heart-btn" (click)="goToPlayer()" [class.animate]="isAnimating">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+    </button>
+
+    <!-- Footer com texto -->
+    <div class="footer">
+        <div class="footer-line"></div>
+        <p class="footer-text">tudo começou assim</p>
+        <div class="footer-line"></div>
+    </div>
+
+    <div class="growing-heart" *ngIf="isAnimating">
+        <svg viewBox="0 0 24 24" fill="#ff3366">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+    </div>
+</div>

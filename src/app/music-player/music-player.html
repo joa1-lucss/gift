@@ -1,0 +1,136 @@
+<div class="container" [style.background]="getDynamicGradient()">
+    
+    <div class="header">
+        <button class="back-btn" (click)="goBack()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+        </button>
+        <div class="now-playing">NOW PLAYING</div>
+        <div class="placeholder"></div>
+    </div>
+
+    <div class="content-wrapper" [class.transitioning]="isTransitioning">
+        <div class="cover-wrapper">
+            <div class="cover-container">
+                <img [src]="getCurrentSong().cover" 
+                     [alt]="getCurrentSong().title" 
+                     class="cover-image"
+                     (error)="getCurrentSong().cover = 'assets/covers/default.jpg'">
+            </div>
+        </div>
+
+        <div class="song-info">
+            <h2>{{ getCurrentSong().title }}</h2>
+            <p>{{ getCurrentSong().artist }}</p>
+        </div>
+
+        <div class="controls">
+            <button class="ctrl-btn prev" (click)="prevSong()" [disabled]="isTransitioning">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
+                </svg>
+            </button>
+            
+            <button class="ctrl-btn play" (click)="togglePlay()">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                    <path *ngIf="!isPlaying" d="M8 5v14l11-7z"/>
+                    <rect *ngIf="isPlaying" x="6" y="5" width="4" height="14" rx="1"/>
+                    <rect *ngIf="isPlaying" x="14" y="5" width="4" height="14" rx="1"/>
+                </svg>
+            </button>
+            
+            <button class="ctrl-btn next" (click)="nextSong()" [disabled]="isTransitioning">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16 6h2v12h-2zm-3.5 6l-8.5-6v12z"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="buttons-container">
+            <button class="description-trigger" (click)="toggleDescription()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                SOBRE ESTA MÚSICA
+            </button>
+
+            <button class="lyrics-trigger" (click)="toggleLyrics()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 9h14V7H3v2zm0 4h14v-2H3v2zm0 4h14v-2H3v2zm16 0h2v-2h-2v2zm0-10v2h2V7h-2zm0 6h2v-2h-2v2z"/>
+                </svg>
+                VER LETRA COMPLETA
+            </button>
+        </div>
+    </div>
+
+    <!-- MODAL DA DESCRIÇÃO -->
+    <div class="description-fullscreen" *ngIf="showDescription" (click)="closeDescription()">
+        <div class="description-overlay">
+            <div class="description-full-content" (click)="$event.stopPropagation()">
+                <div class="description-full-header">
+                    <div class="song-title">
+                        <span class="music-icon">💭</span>
+                        <h3>Sobre esta música</h3>
+                    </div>
+                    <button class="close-fullscreen" (click)="closeDescription()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="description-full-body">
+                    <div class="description-scroll">
+                        <div class="description-full-text">
+                            {{ getCurrentDescription() }}
+                        </div>
+                        <div class="description-full-quote">
+                            "{{ getCurrentQuote() }}"
+                        </div>
+                    </div>
+                </div>
+                <div class="description-footer">
+                    <div class="now-playing-info">
+                        <span>❤️</span>
+                        <span>{{ getCurrentSong().title }} - {{ getCurrentSong().artist }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DA LETRA -->
+    <div class="lyrics-fullscreen" *ngIf="showLyrics" (click)="closeLyrics()">
+        <div class="lyrics-overlay">
+            <div class="lyrics-full-content" (click)="$event.stopPropagation()">
+                <div class="lyrics-full-header">
+                    <div class="song-title">
+                        <span class="music-icon">🎵</span>
+                        <h3>{{ getCurrentSong().title }}</h3>
+                    </div>
+                    <button class="close-fullscreen" (click)="closeLyrics()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="lyrics-full-body">
+                    <div class="lyrics-scroll">
+                        <div *ngFor="let line of getCurrentSong().lyrics; let i = index" class="lyric-full-line" [class.even]="i % 2 === 0">
+                            <div class="original-full">{{ line.original }}</div>
+                            <div class="translation-full">{{ line.translation }}</div>
+                            <div class="line-divider"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lyrics-footer">
+                    <div class="now-playing-info">
+                        <span>🎧</span>
+                        <span>{{ getCurrentSong().artist }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
