@@ -61,8 +61,8 @@ export class MusicPlayerComponent implements OnInit, OnDestroy {
                 { original: "Only worth living if somebody is loving you", translation: "Só vale a pena viver se alguém está te amando" },
                 { original: "And, baby, now you do", translation: "E, amor, agora você ama" }
             ],
-            description: "Uma música que ganhou um significado completamente diferente desde que você apareceu. Antes eu gostava dela, mas agora ela sempre me leva até você. Toda vez que escuto, lembro das nossas conversas, dos nossos momentos e da forma como você faz tudo parecer mais leve. De alguma forma, você acabou ficando guardado nessa música. E acho que é por isso que ela nunca mais vai soar igual para mim.",
-            quote: "Porque, no fim das contas... Heaven is a place on Earth with you"
+            description: "Uma música que ganhou um significado completamente diferente desde que você apareceu. Antes eu gostava dela, mas agora ela sempre me leva até você. Toda vez que escuto, lembro das nossas conversas, dos nossos momentos e da forma como você faz tudo parecer mais leve. De alguma forma, você acabou ficando guardado nessa música. E acho que é por isso que ela nunca mais vai soar igual para mim. Porque, no fim das contas...",
+            quote: "Heaven is a place on Earth with you"
         }
     ];
 
