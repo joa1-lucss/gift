@@ -237,7 +237,6 @@ html, body {
     margin-bottom: 16px;
 }
 
-/* CAIXA APENAS COM A FRASE E ESTRELAS */
 .question-box {
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.1);
@@ -352,7 +351,6 @@ html, body {
     min-height: 320px;
 }
 
-/* Cards empilhados atrás */
 .stack-back-card {
     position: absolute;
     width: 260px;
@@ -377,7 +375,6 @@ html, body {
     z-index: 2;
 }
 
-/* Card principal */
 .stack-main-card {
     position: relative;
     width: 260px;
@@ -430,7 +427,6 @@ html, body {
     opacity: 1;
 }
 
-/* Botões de navegação */
 .stack-nav {
     position: absolute;
     top: 50%;
@@ -463,7 +459,6 @@ html, body {
     right: -12px;
 }
 
-/* Indicadores de página */
 .stack-indicators {
     display: flex;
     justify-content: center;
@@ -497,7 +492,6 @@ html, body {
     transform: scale(1.1);
 }
 
-/* Signos */
 .signs-decoration {
     display: flex;
     align-items: center;
@@ -524,7 +518,6 @@ html, body {
     color: rgba(255,255,255,0.8);
 }
 
-/* Footer */
 .footer {
     display: flex;
     align-items: center;

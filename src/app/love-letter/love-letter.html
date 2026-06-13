@@ -51,7 +51,6 @@
 
                 <p>Quando imagino o futuro, imagino você. Imagino nós dois. Imagino tudo o que ainda podemos viver, construir, descobrir e superar juntos.</p>
 
-                <!-- CAIXA APENAS COM A FRASE E ESTRELAS -->
                 <div class="question-box">
                     <div class="question-stars">✧ ✦ ✧</div>
                     <p class="question">Porque, no fim de tudo, você se tornou o meu lugar favorito no mundo.</p>
@@ -85,12 +84,13 @@
             <div class="stack-back-card"></div>
             <div class="stack-back-card2"></div>
             
-            <!-- Card principal -->
+            <!-- Card principal com imagem pré-carregada -->
             <div class="stack-main-card">
                 <div class="stack-photo-frame">
                     <img [src]="photos[currentPhotoIndex].src" 
                          [alt]="photos[currentPhotoIndex].alt" 
-                         class="stack-photo">
+                         class="stack-photo"
+                         [class.image-loaded]="photos[currentPhotoIndex].preloaded">
                     <div class="stack-overlay"></div>
                 </div>
             </div>
